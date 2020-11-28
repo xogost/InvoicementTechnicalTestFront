@@ -28,6 +28,8 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/devextreme/dist/css/dx.common.css",
+              "node_modules/devextreme/dist/css/dx.light.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -124,5 +126,8 @@
       }
     }
   },
-  "defaultProject": "InvoiceTechnicalTestFront"
+  "defaultProject": "InvoiceTechnicalTestFront",
+  "cli": {
+    "analytics": "1663de08-c93b-4db1-bb11-34d2d7ba33bf"
+  }
 }

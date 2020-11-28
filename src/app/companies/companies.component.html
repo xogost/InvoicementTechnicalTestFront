@@ -1,0 +1,30 @@
+<a routerLink="/company/0">Crear compañia</a>
+<br/>
+<dx-tree-list
+    id="companies"
+    [dataSource]="companies"
+    [rootValue]="-1"
+    keyExpr="id"
+    parentIdExpr="Head_ID"
+    [showRowLines]="true"
+    [showBorders]="true"
+    [columnAutoWidth]="true"
+    [expandedRowKeys]="[1]">
+    <dxi-column dataField="id" caption="ID"></dxi-column>
+    <dxi-column dataField="identification" caption="Identificación (NIT)"></dxi-column>
+    <dxi-column dataField="name" caption="Nombre de compañia"></dxi-column>
+    <dxi-column dataField="createdAt" dataType="date" caption="Fecha de creación"></dxi-column>
+    <dxi-column cellTemplate="cellTemplate">
+        <div *dxTemplate="let data of 'cellTemplate'">
+            <a [routerLink]="['/company/' + data.data.id]" [queryParams]="">Edit</a>
+            <a [routerLink]="['/company/' + data.data.id + '/clients']" [queryParams]="">Clients</a>
+            <dx-button
+                stylingMode="contained"
+                text="Eliminar"
+                type="normal"
+                [width]="80"
+                (onClick)="delete(data.data.id)">
+            </dx-button>
+        </div>
+    </dxi-column>
+</dx-tree-list>

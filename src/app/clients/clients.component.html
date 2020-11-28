@@ -1,0 +1,29 @@
+<a [routerLink]="['/client/', companyId, 0]">Crear Cliente</a>
+<br/>
+<dx-tree-list
+    id="clients"
+    [dataSource]="clients"
+    [rootValue]="-1"
+    keyExpr="id"
+    parentIdExpr="Head_ID"
+    [showRowLines]="true"
+    [showBorders]="true"
+    [columnAutoWidth]="true"
+    [expandedRowKeys]="[1]">
+    <dxi-column dataField="id" caption="ID"></dxi-column>
+    <dxi-column dataField="name" caption="Nombre de Cliente"></dxi-column>
+    <dxi-column dataField="age" caption="Edad"></dxi-column>
+    <dxi-column dataField="createdAt" dataType="date" caption="Fecha de creación"></dxi-column>
+    <dxi-column cellTemplate="cellTemplate">
+        <div *dxTemplate="let data of 'cellTemplate'">
+            <a [routerLink]="['/client/', companyId, data.data.id]" [queryParams]="">Edit</a>
+            <dx-button
+                stylingMode="contained"
+                text="Eliminar"
+                type="normal"
+                [width]="80"
+                (onClick)="delete(data.data.id)">
+            </dx-button>
+        </div>
+    </dxi-column>
+</dx-tree-list>

@@ -1,0 +1,11 @@
+version: '3'
+services:
+  web:
+    container_name: "angular-invoice-test"
+    build: .
+    command: ng serve --open --host 0.0.0.0 --poll
+    volumes:
+      - .:/code
+      - /code/node_modules
+    ports:
+      - "4200:4200"

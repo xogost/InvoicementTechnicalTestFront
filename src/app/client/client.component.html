@@ -1,0 +1,23 @@
+<dx-form  id="form"
+            [(formData)]="client"
+            [readOnly]="readOnly"
+            [showColonAfterLabel]="showColon"
+            [labelLocation]="labelLocation"
+            [minColWidth]="minColWidth"
+            [colCount]="colCount"
+            [width]="width">
+  <dxi-item itemType="group">
+    <dxi-item itemType="group" caption="Información básica del cliente">
+      <dxi-item dataField="name"></dxi-item>
+      <dxi-item dataField="age"></dxi-item>
+    </dxi-item>
+  </dxi-item>
+</dx-form>
+
+<dx-button
+    stylingMode="contained"
+    text="Guardar Información"
+    type="normal"
+    [width]="200"
+    (onClick)="save($event)">
+</dx-button>
