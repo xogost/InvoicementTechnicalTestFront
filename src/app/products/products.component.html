@@ -1,1 +1,49 @@
-<p>products works!</p>
+<div class="card card-center">
+  <img class="icon" src="assets/img/icon4.png" />
+  <h1>Listado de Productos</h1>
+</div>
+<div class="card">
+  <p>
+    A continuación encontrará el listado de productos disponibles actualmente,
+    en caso de no encontrar el producto que desea por favor haga clic en crear
+    uno nuevo:
+  </p>
+  <br/>
+  <a [routerLink]="['/product/', companyId, 0]">Crear Producto</a>
+  <br/>
+  <br/>
+  <dx-tree-list
+      id="products"
+      [dataSource]="products"
+      [rootValue]="-1"
+      keyExpr="id"
+      parentIdExpr="Head_ID"
+      [showRowLines]="true"
+      [showBorders]="true"
+      [columnAutoWidth]="true"
+      [expandedRowKeys]="[1]">
+      <dxi-column dataField="id" caption="ID"></dxi-column>
+      <dxi-column dataField="name" caption="Nombre"></dxi-column>
+      <dxi-column dataField="quantity" caption="Cantidad"></dxi-column>
+      <dxi-column dataField="createdAt" dataType="date" caption="Creación"></dxi-column>
+      <dxi-column caption="Acciones" cellTemplate="cellTemplate">
+          <div *dxTemplate="let data of 'cellTemplate'">
+              <dx-button
+                  stylingMode="contained"
+                  text="Editar"
+                  type="normal"
+                  [width]="120"
+                  (onClick)="goTo('/product/' + companyId + '/' + data.data.id)">
+              </dx-button>
+              <br>
+              <dx-button
+                  stylingMode="contained"
+                  text="Eliminar"
+                  type="normal"
+                  [width]="120"
+                  (onClick)="delete(data.data.id)">
+              </dx-button>
+          </div>
+      </dxi-column>
+  </dx-tree-list>
+</div>

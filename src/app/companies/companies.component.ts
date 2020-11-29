@@ -10,7 +10,7 @@ export class CompaniesComponent implements OnInit {
   companies: any;
   constructor(private apiService: ApiService) { }
 
-  ngOnInit(): void {
+  ngOnInit (): void {
     this.apiService.get('companies').subscribe((data)=>{
       this.companies = data;
     });
@@ -21,5 +21,9 @@ export class CompaniesComponent implements OnInit {
       console.log(data);
       window.location.reload();
     });
+  }
+
+  goTo (url:any) {
+    window.location = url;
   }
 }

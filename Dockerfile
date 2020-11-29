@@ -50,16 +50,3 @@ EXPOSE  4200
 #  Defines your runtime(define default command)
 # These commands unlike RUN (they are carried out in the construction of the container) are run when the container
 CMD ["ng", "serve --open"]
-
-
-
-
-#FROM node:4.8.4
-
-#COPY . /code/
-#WORKDIR /code/
-
-#RUN npm install npm@5.3.0
-#RUN npm install
-
-#EXPOSE 8080

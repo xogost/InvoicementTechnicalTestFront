@@ -20,10 +20,13 @@ export class ClientsComponent implements OnInit {
   }
 
   delete (id:number): void {
-    this.apiService.delete(`company/${id}`).subscribe((data)=>{
+    this.apiService.delete(`client/${id}`).subscribe((data)=>{
       console.log(data);
       window.location.reload();
     });
   }
 
+  goTo (url:any) {
+    window.location = url;
+  }
 }

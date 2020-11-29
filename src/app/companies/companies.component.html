@@ -1,30 +1,66 @@
-<a routerLink="/company/0">Crear compañia</a>
-<br/>
-<dx-tree-list
-    id="companies"
-    [dataSource]="companies"
-    [rootValue]="-1"
-    keyExpr="id"
-    parentIdExpr="Head_ID"
-    [showRowLines]="true"
-    [showBorders]="true"
-    [columnAutoWidth]="true"
-    [expandedRowKeys]="[1]">
-    <dxi-column dataField="id" caption="ID"></dxi-column>
-    <dxi-column dataField="identification" caption="Identificación (NIT)"></dxi-column>
-    <dxi-column dataField="name" caption="Nombre de compañia"></dxi-column>
-    <dxi-column dataField="createdAt" dataType="date" caption="Fecha de creación"></dxi-column>
-    <dxi-column cellTemplate="cellTemplate">
-        <div *dxTemplate="let data of 'cellTemplate'">
-            <a [routerLink]="['/company/' + data.data.id]" [queryParams]="">Edit</a>
-            <a [routerLink]="['/company/' + data.data.id + '/clients']" [queryParams]="">Clients</a>
-            <dx-button
-                stylingMode="contained"
-                text="Eliminar"
-                type="normal"
-                [width]="80"
-                (onClick)="delete(data.data.id)">
-            </dx-button>
-        </div>
-    </dxi-column>
-</dx-tree-list>
+<div class="card card-center">
+  <img class="icon" src="assets/img/icon2.png" />
+  <h1>Listado de Compañias</h1>
+</div>
+
+<div class="card">
+  <p>
+    A continuación encontrará el listado de compañias disponibles actualmente,
+    en caso de no encontrar la compañia que desea por favor haga clic en crear
+    una nueva:
+  </p>
+  <br/>
+  <a routerLink="/company/0">Crear compañia</a>
+  <br/>
+  <br/>
+  <dx-tree-list
+      id="companies"
+      [dataSource]="companies"
+      [rootValue]="-1"
+      keyExpr="id"
+      parentIdExpr="Head_ID"
+      [showRowLines]="true"
+      [showBorders]="true"
+      [columnAutoWidth]="true"
+      [expandedRowKeys]="[1]">
+      <dxi-column dataField="id" caption="ID"></dxi-column>
+      <dxi-column dataField="identification" caption="Identificación (NIT)"></dxi-column>
+      <dxi-column dataField="name" caption="Nombre"></dxi-column>
+      <dxi-column dataField="createdAt" dataType="date" caption="Creación"></dxi-column>
+      <dxi-column caption="Acciones" cellTemplate="cellTemplate">
+          <div *dxTemplate="let data of 'cellTemplate'">
+              <dx-button
+                  stylingMode="contained"
+                  text="Editar"
+                  type="normal"
+                  [width]="120"
+                  (onClick)="goTo('/company/' + data.data.id)">
+              </dx-button>
+              <br>
+              <dx-button
+                  stylingMode="contained"
+                  text="Clientes"
+                  type="normal"
+                  [width]="120"
+                  (onClick)="goTo('/company/' + data.data.id + '/clients')">
+              </dx-button>
+              <br>
+              <dx-button
+                  stylingMode="contained"
+                  text="Productos"
+                  type="normal"
+                  [width]="120"
+                  (onClick)="goTo('/company/' + data.data.id + '/products')">
+              </dx-button>
+              <br>
+              <dx-button
+                  stylingMode="contained"
+                  text="Eliminar"
+                  type="normal"
+                  [width]="120"
+                  (onClick)="delete(data.data.id)">
+              </dx-button>
+          </div>
+      </dxi-column>
+  </dx-tree-list>
+</div>
