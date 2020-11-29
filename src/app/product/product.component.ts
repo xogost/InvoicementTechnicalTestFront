@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service';
 import { Product } from '../objects/Product';
+import {Router} from "@angular/router"
 
 @Component({
   selector: 'app-product',
@@ -16,8 +17,10 @@ export class ProductComponent implements OnInit {
   minColWidth: number = 150;
   colCount: number = 1;
   width: any = '100%';
+  companyId:number = this.actRoute.snapshot.params.companyId;
 
-  constructor(private actRoute: ActivatedRoute, private apiService: ApiService) { }
+  constructor(private actRoute: ActivatedRoute, private apiService: ApiService, private router: Router ) {
+  }
 
   ngOnInit(): void {
     if (this.actRoute.snapshot.params.id != 0) {
@@ -29,14 +32,20 @@ export class ProductComponent implements OnInit {
 
   save (event:any): void {
     if (this.actRoute.snapshot.params.id == 0) {
-      this.apiService.post(`company/${this.actRoute.snapshot.params.companyId}/products`, this.product).subscribe((data)=>{
-        console.log(data);
+      this.apiService.post(`company/${this.actRoute.snapshot.params.companyId}/products`, this.product).subscribe((data:any)=>{
+        this.solveResponse(data, `/company/${this.actRoute.snapshot.params.companyId}/products`)
       });
     } else {
-      this.apiService.put(`product/${this.actRoute.snapshot.params.id}`, this.product).subscribe((data)=>{
-        console.log(data);
+      this.apiService.put(`product/${this.actRoute.snapshot.params.id}`, this.product).subscribe((data:any)=>{
+        this.solveResponse(data, `/company/${this.actRoute.snapshot.params.companyId}/products`)
       });
     }
   }
 
+  solveResponse(data:any, url:string){
+    alert(data['message']);
+    if(data["result"]===true){
+      this.router.navigate([url]);
+    }
+  }
 }

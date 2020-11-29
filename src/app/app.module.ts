@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { DxButtonModule, DxTreeListModule, DxFormModule } from 'devextreme-angular';
 
@@ -13,6 +14,7 @@ import { ClientComponent } from './client/client.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductComponent } from './product/product.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { InvoicementComponent } from './invoicement/invoicement.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +25,15 @@ import { WelcomeComponent } from './welcome/welcome.component';
     ClientComponent,
     ProductsComponent,
     ProductComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    InvoicementComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     DxButtonModule,
     DxTreeListModule,
     DxFormModule

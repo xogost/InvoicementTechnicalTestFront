@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service';
 import { Client } from '../objects/Client';
+import {Router} from "@angular/router"
 
 @Component({
   selector: 'app-client',
@@ -14,10 +15,11 @@ export class ClientComponent implements OnInit {
   readOnly: boolean = false;
   showColon: boolean = true;
   minColWidth: number = 150;
-  colCount: number = 2;
-  width: any = '50%';
+  colCount: number = 1;
+  width: any = '100%';
+  companyId:number = this.actRoute.snapshot.params.companyId;
 
-  constructor(private actRoute: ActivatedRoute, private apiService: ApiService) { }
+  constructor(private actRoute: ActivatedRoute, private apiService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
     if (this.actRoute.snapshot.params.id != 0) {
@@ -29,14 +31,20 @@ export class ClientComponent implements OnInit {
 
   save (event:any): void {
     if (this.actRoute.snapshot.params.id == 0) {
-      this.apiService.post(`company/${this.actRoute.snapshot.params.companyId}/clients`, this.client).subscribe((data)=>{
-        console.log(data);
+      this.apiService.post(`company/${this.actRoute.snapshot.params.companyId}/clients`, this.client).subscribe((data:any)=>{
+        this.solveResponse(data, `/company/${this.actRoute.snapshot.params.companyId}/clients`)
       });
     } else {
-      this.apiService.put(`client/${this.actRoute.snapshot.params.id}`, this.client).subscribe((data)=>{
-        console.log(data);
+      this.apiService.put(`client/${this.actRoute.snapshot.params.id}`, this.client).subscribe((data:any)=>{
+        this.solveResponse(data, `/company/${this.actRoute.snapshot.params.companyId}/clients`)
       });
     }
   }
 
+  solveResponse(data:any, url:string){
+    alert(data['message']);
+    if(data["result"]===true){
+      this.router.navigate([url]);
+    }
+  }
 }

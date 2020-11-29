@@ -13,10 +13,10 @@
               [width]="width">
     <dxi-item itemType="group">
       <dxi-item itemType="group" caption="Información básica del producto">
-        <dxi-item name="Nombre de producto" dataField="name"></dxi-item>
-        <dxi-item caption="Costo" dataField="cost"></dxi-item>
-        <dxi-item caption="Referencia" dataField="reference"></dxi-item>
-        <dxi-item caption="Cantidad (Inventario)" dataField="quantity"></dxi-item>
+        <dxi-item dataField="name"></dxi-item>
+        <dxi-item dataField="cost"></dxi-item>
+        <dxi-item dataField="reference"></dxi-item>
+        <dxi-item dataField="quantity"></dxi-item>
       </dxi-item>
     </dxi-item>
   </dx-form>
@@ -28,4 +28,7 @@
       [width]="200"
       (onClick)="save($event)">
   </dx-button>
+  <br>
+  <br>
+  <a [routerLink]="['/company/', companyId, 'products' ]">Volver</a>
 </div>

@@ -20,13 +20,16 @@ export class ProductsComponent implements OnInit {
   }
 
   delete (id:number): void {
-    this.apiService.delete(`product/${id}`).subscribe((data)=>{
-      console.log(data);
-      window.location.reload();
+    this.apiService.delete(`product/${id}`).subscribe((data:any)=>{
+      alert(data['message']);
+      if(data["result"] === true){
+        window.location.reload();
+      }
     });
   }
 
   goTo (url:any) {
     window.location = url;
   }
+
 }

@@ -1,23 +1,33 @@
-<dx-form  id="form"
-            [(formData)]="client"
-            [readOnly]="readOnly"
-            [showColonAfterLabel]="showColon"
-            [labelLocation]="labelLocation"
-            [minColWidth]="minColWidth"
-            [colCount]="colCount"
-            [width]="width">
-  <dxi-item itemType="group">
-    <dxi-item itemType="group" caption="Información básica del cliente">
-      <dxi-item dataField="name"></dxi-item>
-      <dxi-item dataField="age"></dxi-item>
+<div class="card card-center">
+  <img class="icon" src="assets/img/icon3.png" />
+  <h1>Listado de Clientes</h1>
+</div>
+<div class="card">
+  <dx-form  id="form"
+              [(formData)]="client"
+              [readOnly]="readOnly"
+              [showColonAfterLabel]="showColon"
+              [labelLocation]="labelLocation"
+              [minColWidth]="minColWidth"
+              [colCount]="colCount"
+              [width]="width">
+    <dxi-item itemType="group">
+      <dxi-item itemType="group" caption="Información básica del cliente">
+        <dxi-item dataField="name"></dxi-item>
+        <dxi-item dataField="age"></dxi-item>
+      </dxi-item>
     </dxi-item>
-  </dxi-item>
-</dx-form>
+  </dx-form>
 
-<dx-button
-    stylingMode="contained"
-    text="Guardar Información"
-    type="normal"
-    [width]="200"
-    (onClick)="save($event)">
-</dx-button>
+  <dx-button
+      stylingMode="contained"
+      text="Guardar Información"
+      type="normal"
+      [width]="200"
+      (onClick)="save($event)">
+  </dx-button>
+
+  <br>
+  <br>
+  <a [routerLink]="['/company/', companyId, 'clients' ]">Volver</a>
+</div>

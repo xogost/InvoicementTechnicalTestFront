@@ -59,7 +59,7 @@ h1, h2, h3, h4, h5, h6 {
   color:#1f0022
 }
 
-p, ol, a, .dx-treelist-container td {
+label, p, ol, a, .dx-treelist-container td {
   font-size: 20px;
   font-family: 'Titillium Web', sans-serif !important;
 }

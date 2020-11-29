@@ -1,0 +1,16 @@
+.item {
+  width: 100%;
+}
+
+.item label, .item select{
+  width: 100%;
+}
+
+.item select{
+  height: 2em;
+}
+
+.card button {
+  min-height: 30px;
+  padding: 1em;
+}

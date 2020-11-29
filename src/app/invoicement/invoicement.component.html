@@ -1,0 +1,67 @@
+<div class="card card-center">
+  <img class="icon" src="assets/img/icon5.png" />
+  <h1>Módulo de Facturación</h1>
+</div>
+<div class="card card-center">
+  <dx-tree-list
+      id="invoices"
+      [dataSource]="invoices"
+      [rootValue]="-1"
+      keyExpr="id"
+      parentIdExpr="Head_ID"
+      [showRowLines]="true"
+      [showBorders]="true"
+      [columnAutoWidth]="true"
+      [expandedRowKeys]="[1]">
+      <dxi-column dataField="id" caption="ID"></dxi-column>
+      <dxi-column dataField="id" caption="No. Factura"></dxi-column>
+      <dxi-column dataField="createdAt" dataType="date" caption="Creación"></dxi-column>
+  </dx-tree-list>
+</div>
+<div class="card">
+  <h2>Creación de Factura</h2>
+  <div class="custom-form">
+    <div class="item">
+      <label>Compañia</label>
+      <select id="companies" [(ngModel)]="selectedCompany" (change)="getClients($event)">
+        <option *ngFor="let item of companies" [value]="item.id">{{ item.name }}</option>
+      </select>
+    </div>
+    <div class="item">
+      <label>Clientes</label>
+      <select id="clients" [(ngModel)]="selectedClient">
+        <option *ngFor="let item of clients" [value]="item.id">{{ item.name }}</option>
+      </select>
+    </div>
+    <div class="item">
+      <label>Productos</label>
+      <select id="products" [(ngModel)]="selectedProduct">
+        <option *ngFor="let item of products; let i = index" [ngValue]="i">{{ item.name }}</option>
+      </select>
+      <br>
+      <br>
+      <button (click)="addProducts()">Agregar</button>
+    </div>
+    <br/>
+    <dx-tree-list
+        id="invoiceProducts"
+        [dataSource]="invoiceProducts"
+        [rootValue]="-1"
+        keyExpr="id"
+        parentIdExpr="Head_ID"
+        [showRowLines]="true"
+        [showBorders]="true"
+        [columnAutoWidth]="true"
+        [expandedRowKeys]="[1]">
+        <dxi-column dataField="name" caption="Nombre"></dxi-column>
+        <dxi-column dataField="cost" caption="Costo"></dxi-column>
+        <dxi-column dataField="reference" caption="Referencia"></dxi-column>
+    </dx-tree-list>
+    <br/>
+    <label>Total: {{ total }}</label>
+  </div>
+  <button (click)="save()">Guardar Información</button>
+  <br>
+  <br>
+  <a [routerLink]="['/']">Volver</a>
+</div>
